@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Infrastructure\Controller;
 
-use App\Entity\Game;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Domain\Game;
+use App\Domain\Repository\GameRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,12 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class GameController extends AbstractController
 {
     #[Route('/game', name: 'game_create', methods: ['POST'])]
-    public function index(EntityManagerInterface $entityManager): JsonResponse
+    public function index(GameRepositoryInterface $gameRepository): JsonResponse
     {
         $game = new Game();
-
-        $entityManager->persist($game);
-        $entityManager->flush();
+        $gameRepository->save($game);
 
         return $this->json([
             'id' => $game->getId(),

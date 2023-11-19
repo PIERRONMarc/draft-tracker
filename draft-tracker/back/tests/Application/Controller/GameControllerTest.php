@@ -2,7 +2,7 @@
 
 namespace App\Tests\Application\Controller;
 
-use App\Entity\Game;
+use App\Domain\Game;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
