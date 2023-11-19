@@ -8,10 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GameController extends AbstractController
+#[Route('/game', name: 'game_create', methods: ['POST'])]
+class CreateGame extends AbstractController
 {
-    #[Route('/game', name: 'game_create', methods: ['POST'])]
-    public function index(GameRepositoryInterface $gameRepository): JsonResponse
+    public function __invoke(GameRepositoryInterface $gameRepository): JsonResponse
     {
         $game = new Game();
         $gameRepository->save($game);
