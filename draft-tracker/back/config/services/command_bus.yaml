@@ -1,0 +1,5 @@
+services:
+  App\Application\CommandBus\Handler\:
+    resource: '../../src/Application/CommandBus/Handler/*'
+    tags:
+      - { name: tactician.handler, typehints: true }
